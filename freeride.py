@@ -254,8 +254,9 @@ def cmd_auto(_: argparse.Namespace) -> int:
             continue
         steps = [
             ["config", "set", f"providers.{prov.hermes_name}.base_url", prov.base_url],
-            ["config", "set", f"providers.{prov.hermes_name}.api_key_env_var", prov.env_var],
         ]
+        if prov.env_var:
+            steps.append(["config", "set", f"providers.{prov.hermes_name}.api_key_env_var", prov.env_var])
         # Add free models to the provider config
         free_models = [m for m in prov.models if m["tier"] == "free"]
         if free_models:
@@ -318,6 +319,8 @@ def cmd_switch(args: argparse.Namespace) -> int:
         ["config", "set", f"providers.{prov.hermes_name}.default_model", model["id"]],
         ["config", "set", f"providers.{prov.hermes_name}.base_url", prov.base_url],
     ]
+    if prov.env_var:
+        steps.append(["config", "set", f"providers.{prov.hermes_name}.api_key_env_var", prov.env_var])
     for step in steps:
         if _hermes(*step) != 0:
             return 1
@@ -354,7 +357,6 @@ def build_parser() -> argparse.ArgumentParser:
         sp.set_defaults(func=fn)
         if name in ("list", "free"):
             sp.add_argument("--provider", "-p", help="Filter by provider name")
-            sp.add_argument("--paid", action="store_true", dest="show_paid", help="Include paid models (list only)")
 
     sp = sub.add_parser("switch", help="Switch to a specific model (auto-detects provider)")
     sp.add_argument("model", help="Model ID or partial name (e.g. 'big-pickle', 'owl-alpha')")

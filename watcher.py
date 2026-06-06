@@ -90,9 +90,10 @@ def _set_model(model_id: str, prov: Provider) -> int:
         ["config", "set", "model.default", model_id],
         ["config", "set", "model.base_url", prov.base_url],
         ["config", "set", f"providers.{prov.hermes_name}.base_url", prov.base_url],
-        ["config", "set", f"providers.{prov.hermes_name}.api_key_env_var", prov.env_var],
         ["config", "set", f"providers.{prov.hermes_name}.default_model", model_id],
     ]
+    if prov.env_var:
+        steps.append(["config", "set", f"providers.{prov.hermes_name}.api_key_env_var", prov.env_var])
     for step in steps:
         if subprocess.call(["hermes", *step]) != 0:
             return 1
@@ -148,8 +149,8 @@ def _probe_model(model_id: str, timeout_s: int = 20) -> tuple[bool, float]:
         headers={
             "Authorization": f"Bearer {key}",
             "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/Shaivpidadi/FreeRide",
-            "X-Title": "FreeRide Watcher",
+            "HTTP-Referer": "https://github.com/dazeb/freeride-h",
+            "X-Title": "FreeRide-H Watcher",
         },
         method="POST",
     )

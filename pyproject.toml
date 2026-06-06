@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "freeride-h"
+dynamic = ["version"]
+description = "Multi-provider free-model manager for Hermes AI agents. Browse, switch, and auto-rotate across 9 providers and 43+ free models."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "dazeb", email = "dazeb2025@gmail.com" },
+]
+urls = { Homepage = "https://github.com/dazeb/freeride-h" }
+
+[project.scripts]
+freeride = "freeride:main"
+freeride-watcher = "watcher:main"
+
+[tool.setuptools]
+py-modules = ["freeride", "watcher"]
