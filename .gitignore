@@ -1,0 +1,11 @@
+# FreeRide-H
+
+
+.hermes/
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+dist/
+build/
+.DS_Store
