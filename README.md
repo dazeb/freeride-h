@@ -239,4 +239,6 @@ MIT — use it, ship it, fork it.
 
 ---
 
-*Built for [Hermes Agent](https://hermes-agent.nousresearch.com) by Nous Research.*
+*Built for [Hermes Agent](https://hermes-agent.nousresearch.com) created by Nous Research.*  
+
+Freeride-h is *not* affiliated with Hermes or Nous Research in *any way*. 
