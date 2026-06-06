@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="freeride-h",
-    version="1.0.0",
+    version="1.0.1",
     py_modules=["freeride", "watcher"],
     entry_points={
         "console_scripts": [
